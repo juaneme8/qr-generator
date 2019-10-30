@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const scanModal = document.querySelector('#scanModal');
   const scanModalInstance = M.Modal.init(scanModal);
 
+  const menus = document.querySelectorAll('.side-menu');
+  M.Sidenav.init(menus, { edge: 'right' });
+
   //Función encargada de dibujar línea alrededor del QR.
   const dibujoLinea = (begin, end, color) => {
     canvas2d.beginPath();
@@ -65,13 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use facingMode: environment to attemt to get the front camera on phones
     navigator.mediaDevices
       .getUserMedia({ video: { facingMode: 'environment' } })
-      .then(stream => {
+      .then((stream) => {
         video.srcObject = stream;
         video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
         video.play();
         myReq = requestAnimationFrame(tick);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('getUserMedia Error // ' + err);
       });
   };

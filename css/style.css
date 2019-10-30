@@ -12,6 +12,10 @@ body {
   position: relative;
 }
 
+nav {
+  background: var(--primary);
+}
+
 h1 {
   margin: 10px 0;
   font-size: 40px;
