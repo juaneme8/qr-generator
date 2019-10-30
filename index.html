@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>sCIME QR</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🚇sCIME Scanner</h1>
+    <p>Lector de Códigos QR</p>
+
+    <div id="scanModal" class="modal">
+      <div class="modal-content">
+        <div id="loadingMessage">
+          🎥 No fue posible acceder al stream de video (por favor asegurarse de tener una cámara conectada).
+        </div>
+        <canvas id="canvas" hidden> </canvas>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves-light btn-small">Cerrar</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col m4 grey center">
+        <button data-target="scanModal" id="readBtn" class="btn modal-trigger">Leer QR</button>
+      </div>
+      <div class="col m4 center">
+        <div class="input-field col s6">
+          <input placeholder="002-E-018" id="qrLeido" type="text" class="validate" />
+          <label for="qrLeido">ID elemento</label>
+        </div>
+      </div>
+      <div class="col m4 center">
+        <div id="searchBtn"><i class="material-icons small">search</i></div>
+      </div>
+    </div>
+
+    <script src="jsQR.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
