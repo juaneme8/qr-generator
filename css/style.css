@@ -1,24 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: color: var(--secondary);
+}
+
 :root {
   --primary: #07bab2;
   --secondary: #282428;
   --title: #282428;
-}
-
-body {
-  font-family: 'Ropa Sans', sans-serif;
-  color: #333;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-}
-
-nav {
-  background: var(--primary);
-}
-
-h1 {
-  margin: 10px 0;
-  font-size: 40px;
 }
 
 #loadingMessage {
@@ -31,7 +22,34 @@ h1 {
   width: 100%;
 }
 
+.row {
+  margin-bottom: 0;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#readBtn {
+  color: var(--primary);
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #searchBtn > i {
   color: var(--primary);
   cursor: pointer;
+}
+
+
+#searchField > label {
+  color: var(--primary);
+}
+
+::placeholder {
+  color: var(--secondary);
 }
