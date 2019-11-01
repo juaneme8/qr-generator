@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
   font-family: 'Roboto Condensed', sans-serif;
-  color: color: var(--secondary);
+  color: var(--secondary);
 }
 
 :root {
@@ -24,7 +24,6 @@
 
 .row {
   margin-bottom: 0;
-
 }
 
 .col {
@@ -43,17 +42,18 @@
   border: 1px solid var(--secondary);
   border-radius: 0.3em;
   padding: 0 10px;
-  background-color:#eee
+  background-color: #eee;
 }
 
-#readBtn:hover, #searchBtn > i:hover{
+#readBtn:hover,
+#searchBtn > i:hover {
   color: #eee;
   background-color: var(--primary);
   border: 1px solid white;
 }
 
 #searchBtn > i {
-  background-color:#eee;
+  background-color: #eee;
   color: var(--secondary);
   cursor: pointer;
   border: 1px solid var(--secondary);
@@ -61,7 +61,6 @@
   padding: 10px;
   margin-right: 10px;
 }
-
 
 #searchField > label {
   color: var(--secondary);
