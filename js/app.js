@@ -7,11 +7,17 @@ const searchBtn = document.getElementById('searchBtn');
 let myReq = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const scanModal = document.querySelector('#scanModal');
-  const scanModalInstance = M.Modal.init(scanModal);
+  const modals = document.querySelectorAll('.modal');
+  M.Modal.init(modals, {
+    onOpenStart: function(aux) {
+      if (aux.id === 'modal-scan') {
+        nuevoCodigo();
+      }
+    }
+  });
 
-  const menus = document.querySelectorAll('.side-menu');
-  M.Sidenav.init(menus, { edge: 'right' });
+  const mobile = document.querySelector('#mobile-demo');
+  M.Sidenav.init(mobile, { edge: 'right' });
 
   //Función encargada de dibujar línea alrededor del QR.
   const dibujoLinea = (begin, end, color) => {
@@ -47,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         qrLeido.value = codigoLeido.data;
 
         //Cierro modal
-        scanModalInstance.close();
+        const modalScan = document.querySelector('#modal-scan');
+        M.modal.getInstance(modalScan).close();
 
         //Coloco lecturaOK y cancelo animación de modo de dar por terminada la secuencia.
         lecturaOK = true;
@@ -78,10 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('getUserMedia Error // ' + err);
       });
   };
-
-  readBtn.addEventListener('click', () => {
-    nuevoCodigo();
-  });
 
   searchBtn.addEventListener('click', () => {
     //TODO Buscar en Firestore el valor del textbox qrLeido.value
