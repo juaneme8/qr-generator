@@ -1,65 +1,182 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>sCIME QR</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.2.3/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.2.3/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.2.3/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.2.3/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.2.3/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <link rel="stylesheet" href="css/Material+Icons.css" />
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+  <body class="grey lighten-2">
+    <!-- CENTRAL NAV -->
+    <nav class="teal accent-4">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">
+          <img src="img/logo.svg" style="width: 120px; margin-top: 10px;" />
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="logged-in">
+            <a href="#" class="modal-trigger black-text" data-target="modal-account">Perfil</a>
+          </li>
+          <li class="admin">
+            <a href="#" class=" modal-trigger black-text" data-target="modal-scan">Scan QR</a>
+          </li>
+          <li class="logged-out">
+            <a href="#" class=" modal-trigger black-text" data-target="modal-login">Login</a>
+          </li>
+          <li class="logged-out">
+            <a href="#" class=" modal-trigger black-text" data-target="modal-signup">Crear Cuenta</a>
+          </li>
+          <li class="logged-in">
+            <a href="#" class="black-text" id="logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- SIDE NAV -->
+    <ul class="sidenav" id="mobile-demo">
+      <li class="logged-out">
+        <a href="#" class=" modal-trigger black-text" data-target="modal-signup">Crear Cuenta</a>
+      </li>
+      <li class="logged-in">
+        <a href="#" class="modal-trigger black-text" data-target="modal-account">Cuenta</a>
+      </li>
+      <li class="logged-in">
+        <a href="#" class=" modal-trigger black-text" data-target="modal-scan">Scan QR</a>
+      </li>
+      <li class="logged-out">
+        <a href="#" class=" modal-trigger black-text" data-target="modal-login">Login</a>
+      </li>
+      <li class="logged-in">
+        <a href="#" class="black-text" id="logout">Logout</a>
+      </li>
+    </ul>
+
+    <!-- SECCION QR -->
+    <div class="container">
+      <div class="input-field" id="searchField">
+        <input placeholder="002-E-018" id="qrLeido" type="text" class="validate" />
+        <label for="qrLeido">Codigo Material</label>
+      </div>
+      <div id="searchBtn" class="center"><i class="material-icons">search</i></div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+      <div class="modal-content">
+        <h4>Crear Cuenta</h4>
+        <br />
+        <form id="signup-form">
+          <div class="input-field">
+            <input type="email" id="signup-email" required />
+            <label for="signup-email">Correo Electrónico</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="signup-password" required />
+            <label for="signup-password">Contraseña</label>
+          </div>
+          <div class="input-field">
+            <input type="text" id="signup-bio" required />
+            <label for="signup-bio">Linea // Sector</label>
+          </div>
+          <button class="btn teal accent-4 z-depth-0">Registrarse</button>
+          <p class="error pink-text center-align"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+      <div class="modal-content">
+        <h4>Login</h4>
+        <br />
+        <form id="login-form">
+          <div class="input-field">
+            <input type="email" id="login-email" required />
+            <label for="login-email">Correo Electrónico</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="login-password" required />
+            <label for="login-password">Contraseña</label>
+          </div>
+          <button class="btn teal accent-4 z-depth-0">Login</button>
+          <p class="error pink-text center-align"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+      <div class="modal-content center-align">
+        <h4>Detalles de Cuenta</h4>
+        <br />
+        <div class="account-details"></div>
+      </div>
+    </div>
+
+    <!-- CREAR MATERIAL MODAL -->
+    <!-- <div id="modal-create" class="modal">
+      <div class="modal-content">
+        <h4>Nuevo Material</h4>
+        <br />
+        <form id="create-form">
+          <div class="input-field">
+            <input type="text" id="title" required />
+            <label for="title">ID</label>
+          </div>
+          <div class="input-field">
+            <textarea id="content" class="materialize-textarea" required></textarea>
+            <label for="content">Descripción</label>
+          </div>
+          <button class="btn teal accent-4 z-depth-0">Agregar</button>
+        </form>
+      </div>
+    </div> -->
+
+    <!-- QRSCAN MODAL -->
+    <div id="modal-scan" class="modal">
+      <div class="modal-content">
+        <div id="loadingMessage">
+          <i class="material-icons small">directions_railway</i>
+          No fue posible acceder al stream de video (por favor asegurarse de tener una cámara conectada).
+        </div>
+        <canvas id="canvas" hidden> </canvas>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves-light btn-small">Cerrar</a>
+      </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: 'AIzaSyA5PAF-vgGzPnm1_rJPyrwHwzM3AlqrXwY',
+        authDomain: 'sistema-cime.firebaseapp.com',
+        databaseURL: 'https://sistema-cime.firebaseio.com',
+        projectId: 'sistema-cime',
+        appId: '1:408997786610:web:ac1a8d758722fa9845f16b',
+        measurementId: 'G-5QSCTTHK36'
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      const auth = firebase.auth();
+      const db = firebase.firestore();
     </script>
+
+    <script src="js/materialize.min.js"></script>
+    <script src="js/jsQR.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
   </body>
 </html>
