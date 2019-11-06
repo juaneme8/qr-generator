@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modals = document.querySelectorAll('.modal');
   M.Modal.init(modals, {
     onOpenStart: function(aux) {
+      //Si el modal inicializado corresponde al scan de QR llamo a nuevoCodigo()
       if (aux.id === 'modal-scan') {
         nuevoCodigo();
       }
@@ -68,8 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
       myReq = requestAnimationFrame(tick);
     }
   };
-
-  const readBtn = document.querySelector('#readBtn');
 
   const nuevoCodigo = () => {
     // Use facingMode: environment to attemt to get the front camera on phones
