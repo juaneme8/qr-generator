@@ -9,7 +9,11 @@
 :root {
   --primary: #07bab2;
   --secondary: #282428;
-  --title: #282428;
+}
+
+.brand-logo img {
+  line-height: 56px;
+  height: 0.75em;
 }
 
 #loadingMessage {
@@ -22,16 +26,43 @@
   width: 100%;
 }
 
-.row {
-  margin-bottom: 0;
-}
-
-.col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#searchField {
+  margin: 10px;
 }
 
 #searchBtn > i {
   cursor: pointer;
+}
+
+#searchField {
+  margin-top: 30px;
+}
+
+#qrLeido {
+  width: 80%;
+}
+
+#searchBtn {
+  width: 30px;
+  background-color: red;
+}
+
+/*Estilos para pantallas grandes*/
+@media only screen and (min-width: 601px) {
+  nav {
+    height: 100px;
+  }
+  #nav-mobile {
+    height: 100%;
+  }
+
+  .modal-trigger {
+    height: 100%;
+  }
+
+  .brand-logo img {
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 1.5em;
+  }
 }

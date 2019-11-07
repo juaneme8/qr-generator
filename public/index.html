@@ -12,10 +12,10 @@
   </head>
   <body class="grey lighten-2">
     <!-- CENTRAL NAV -->
-    <nav class="teal accent-4">
-      <div class="nav-wrapper container">
+    <nav class="teal accent-4 z-depth-0">
+      <div class="nav-wrapper">
         <a href="#" class="brand-logo">
-          <img src="img/logo.svg" style="width: 120px; margin-top: 10px;" />
+          <img src="img/logo.svg" />
         </a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -24,6 +24,12 @@
           </li>
           <li class="admin">
             <a href="#" class="modal-trigger black-text" data-target="modal-scan">Scan QR</a>
+          </li>
+          <li class="admin">
+            <a href="#" class="modal-trigger black-text" data-target="modal-create">Nuevo Material</a>
+          </li>
+          <li class="admin">
+            <a href="#" class="modal-trigger black-text" data-target="modal-admin">Administrar</a>
           </li>
           <li class="logged-out">
             <a href="#" class="modal-trigger black-text" data-target="modal-login">Login</a>
@@ -43,11 +49,18 @@
         <a href="#" class=" modal-trigger black-text" data-target="modal-signup">Crear Cuenta</a>
       </li>
       <li class="logged-in">
-        <a href="#" class="modal-trigger black-text" data-target="modal-account">Cuenta</a>
+        <a href="#" class="modal-trigger black-text" data-target="modal-account">Perfil</a>
       </li>
       <li class="logged-in">
         <a href="#" class=" modal-trigger black-text" data-target="modal-scan">Scan QR</a>
       </li>
+      <li class="logged-in">
+        <a href="#" class="modal-trigger black-text" data-target="modal-create">Nuevo Material</a>
+      </li>
+      <li class="admin">
+        <a href="#" class="modal-trigger black-text" data-target="modal-admin">Administrar</a>
+      </li>
+
       <li class="logged-out">
         <a href="#" class=" modal-trigger black-text" data-target="modal-login">Login</a>
       </li>
@@ -57,11 +70,9 @@
     </ul>
 
     <!-- SECCION QR -->
-    <div class="container">
-      <div class="input-field" id="searchField">
-        <input placeholder="002-E-018" id="qrLeido" type="text" class="validate" />
-        <label for="qrLeido">Codigo Material</label>
-      </div>
+    <div class="input-field" id="searchField">
+      <label for="qrLeido">Codigo Material</label>
+      <input placeholder="002-E-018" id="qrLeido" type="text" class="validate" />
       <div id="searchBtn" class="center"><i class="material-icons">search</i></div>
     </div>
 
@@ -118,8 +129,7 @@
       </div>
     </div>
 
-    <!-- CREAR MATERIAL MODAL -->
-    <!-- <div id="modal-create" class="modal">
+    <div id="modal-create" class="modal">
       <div class="modal-content">
         <h4>Nuevo Material</h4>
         <br />
@@ -135,7 +145,7 @@
           <button class="btn teal accent-4 z-depth-0">Agregar</button>
         </form>
       </div>
-    </div> -->
+    </div>
 
     <!-- QRSCAN MODAL -->
     <div id="modal-scan" class="modal">
