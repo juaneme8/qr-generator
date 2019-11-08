@@ -19,25 +19,23 @@
         </a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li class="logged-in">
+          <li class="logged-in" style="display: none;">
             <a href="#" class="modal-trigger black-text" data-target="modal-account">Perfil</a>
           </li>
-          <li class="admin">
+          <li class="logged-in" style="display: none;">
             <a href="#" class="modal-trigger black-text" data-target="modal-scan">Scan QR</a>
           </li>
-          <li class="admin">
-            <a href="#" class="modal-trigger black-text" data-target="modal-create">Nuevo Material</a>
-          </li>
-          <li class="admin">
+
+          <li class="admin" style="display: none;">
             <a href="#" class="modal-trigger black-text" data-target="modal-admin">Administrar</a>
           </li>
-          <li class="logged-out">
+          <li class="logged-out" style="display: none;">
             <a href="#" class="modal-trigger black-text" data-target="modal-login">Login</a>
           </li>
-          <li class="logged-out">
+          <li class="logged-out" style="display: none;">
             <a href="#" class="modal-trigger black-text" data-target="modal-signup">Crear Cuenta</a>
           </li>
-          <li class="logged-in">
+          <li class="logged-in" style="display: none;">
             <a href="#" class="black-text" id="logout">Logout</a>
           </li>
         </ul>
@@ -45,26 +43,24 @@
     </nav>
     <!-- SIDE NAV -->
     <ul class="sidenav" id="mobile-demo">
-      <li class="logged-out">
+      <li class="logged-out" F>
         <a href="#" class=" modal-trigger black-text" data-target="modal-signup">Crear Cuenta</a>
       </li>
-      <li class="logged-in">
+      <li class="logged-in" style="display: none;">
         <a href="#" class="modal-trigger black-text" data-target="modal-account">Perfil</a>
       </li>
-      <li class="logged-in">
+      <li class="logged-in" style="display: none;">
         <a href="#" class=" modal-trigger black-text" data-target="modal-scan">Scan QR</a>
       </li>
-      <li class="logged-in">
-        <a href="#" class="modal-trigger black-text" data-target="modal-create">Nuevo Material</a>
-      </li>
-      <li class="admin">
+
+      <li class="admin" style="display: none;">
         <a href="#" class="modal-trigger black-text" data-target="modal-admin">Administrar</a>
       </li>
 
-      <li class="logged-out">
+      <li class="logged-out" style="display: none;">
         <a href="#" class=" modal-trigger black-text" data-target="modal-login">Login</a>
       </li>
-      <li class="logged-in">
+      <li class="logged-in" style="display: none;">
         <a href="#" class="black-text" id="logout">Logout</a>
       </li>
     </ul>
@@ -129,24 +125,6 @@
       </div>
     </div>
 
-    <div id="modal-create" class="modal">
-      <div class="modal-content">
-        <h4>Nuevo Material</h4>
-        <br />
-        <form id="create-form">
-          <div class="input-field">
-            <input type="text" id="titulo" required />
-            <label for="titulo">Titulo</label>
-          </div>
-          <div class="input-field">
-            <textarea id="descripcion" class="materialize-textarea" required></textarea>
-            <label for="descripcion">Descripción</label>
-          </div>
-          <button class="btn teal accent-4 z-depth-0">Agregar</button>
-        </form>
-      </div>
-    </div>
-
     <!-- QRSCAN MODAL -->
     <div id="modal-scan" class="modal">
       <div class="modal-content">
@@ -161,8 +139,8 @@
       </div>
     </div>
 
-    <!-- MATERIALES -->
-    <div class="equipos container grey-text text-darken-1"></div>
+    <!-- CONTENEDOR DE EQUIPOS -->
+    <div class="contenedorEquipos container grey-text text-darken-1"></div>
 
     <div class="center">
       <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
@@ -170,18 +148,18 @@
       </a>
     </div>
 
-    <!-- add recipe side nav -->
+    <!-- LEFT SIDENAV AGREGAR EQUIPO -->
     <div id="side-form" class="sidenav side-form">
-      <form class="add-recipe container section">
-        <h6>Nuevo Préstamo</h6>
+      <form id="agregar-equipo">
+        <h6>Nuevo Equipo</h6>
         <div class="divider"></div>
         <div class="input-field">
-          <input placeholder="Osciloscopio" id="title" type="text" class="validate" />
-          <label for="title">Instrumento</label>
+          <input placeholder="002-E-018" id="id" type="text" class="validate" />
+          <label for="id">ID</label>
         </div>
         <div class="input-field">
-          <input placeholder="Juan Pérez" id="ingredients" type="text" class="validate" />
-          <label for="ingredients">Retira</label>
+          <input placeholder="Señales Línea D" id="sector" type="text" class="validate" />
+          <label for="sector">Sector</label>
         </div>
         <div class="input-field center">
           <button class="btn-small">Agregar</button>
