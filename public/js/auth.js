@@ -69,31 +69,32 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     user.getIdTokenResult().then((idTokenResult) => {
       user.admin = idTokenResult.claims.admin;
-      setupUI(user);
+      //setupUI(user);
     });
-    db.collection('materiales').onSnapshot(
+    db.collection('equipos').onSnapshot(
       (snapshot) => {
         setupGuides(snapshot.docs);
       },
       (err) => console.log(err.message)
     );
   } else {
-    setupUI();
-    setupGuides([]);
+    //setupUI();
+    //setupGuides([]);
   }
 });
 
-// CREAR NUEVO INSTRUMENTO
+// AGREGAR INSTRUMENTO
 const createForm = document.querySelector('#create-form');
 createForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  db.collection('guides')
+  db.collection('equipos')
     .add({
-      title: createForm.title.value,
-      content: createForm.content.value
+      titulo: createForm.titulo.value,
+      descripcion: createForm.descripcion.value
     })
     .then(() => {
       // close the create modal & reset form
+      console.log('Insturmento agregado');
       const modal = document.querySelector('#modal-create');
       M.Modal.getInstance(modal).close();
       createForm.reset();
@@ -101,4 +102,46 @@ createForm.addEventListener('submit', (e) => {
     .catch((err) => {
       console.log(err.message);
     });
+});
+
+// REAL-TIME LISTENER
+db.collection('equipos').onSnapshot((snapshot) => {
+  snapshot.docChanges().forEach((change) => {
+    if (change.type === 'added') {
+      renderEquipo(change.doc.data(), change.doc.id);
+    }
+    if (change.type === 'removed') {
+      renderEquipo(change.doc.id);
+    }
+  });
+});
+
+// AGREGAR MATERIAL
+const form = document.querySelector('form');
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  const recipe = {
+    name: form.title.value,
+    ingredients: form.ingredients.value
+  };
+
+  db.collection('recipes')
+    .add(recipe)
+    .catch((err) => console.log(err));
+
+  form.title.value = '';
+  form.ingredients.value = '';
+});
+
+// ELIMINAR MATERIAL
+const recipeContainer = document.querySelector('.equipos');
+recipeContainer.addEventListener('click', (evt) => {
+  if (evt.target.tagName === 'I') {
+    const id = evt.target.getAttribute('data-id');
+    //console.log(id);
+    db.collection('recipes')
+      .doc(id)
+      .delete();
+  }
 });

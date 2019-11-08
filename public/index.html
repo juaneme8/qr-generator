@@ -135,12 +135,12 @@
         <br />
         <form id="create-form">
           <div class="input-field">
-            <input type="text" id="title" required />
-            <label for="title">ID</label>
+            <input type="text" id="titulo" required />
+            <label for="titulo">Titulo</label>
           </div>
           <div class="input-field">
-            <textarea id="content" class="materialize-textarea" required></textarea>
-            <label for="content">Descripción</label>
+            <textarea id="descripcion" class="materialize-textarea" required></textarea>
+            <label for="descripcion">Descripción</label>
           </div>
           <button class="btn teal accent-4 z-depth-0">Agregar</button>
         </form>
@@ -159,6 +159,34 @@
       <div class="modal-footer">
         <a class="modal-close waves-effect waves-light btn-small">Cerrar</a>
       </div>
+    </div>
+
+    <!-- MATERIALES -->
+    <div class="equipos container grey-text text-darken-1"></div>
+
+    <div class="center">
+      <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
+        <i class="material-icons">add</i>
+      </a>
+    </div>
+
+    <!-- add recipe side nav -->
+    <div id="side-form" class="sidenav side-form">
+      <form class="add-recipe container section">
+        <h6>Nuevo Préstamo</h6>
+        <div class="divider"></div>
+        <div class="input-field">
+          <input placeholder="Osciloscopio" id="title" type="text" class="validate" />
+          <label for="title">Instrumento</label>
+        </div>
+        <div class="input-field">
+          <input placeholder="Juan Pérez" id="ingredients" type="text" class="validate" />
+          <label for="ingredients">Retira</label>
+        </div>
+        <div class="input-field center">
+          <button class="btn-small">Agregar</button>
+        </div>
+      </form>
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -187,6 +215,7 @@
     <script src="js/materialize.min.js"></script>
     <script src="js/jsQR.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/auth.js"></script>
   </body>
 </html>
