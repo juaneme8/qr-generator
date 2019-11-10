@@ -3,7 +3,11 @@
 * {
   box-sizing: border-box;
   font-family: 'Roboto Condensed', sans-serif;
-  color: var(--secondary);
+}
+
+body,
+html {
+  height: 100%;
 }
 
 :root {
@@ -26,25 +30,8 @@
   width: 100%;
 }
 
-#searchField {
-  margin: 10px;
-}
-
 #searchBtn > i {
   cursor: pointer;
-}
-
-#searchField {
-  margin-top: 30px;
-}
-
-#qrLeido {
-  width: 80%;
-}
-
-#searchBtn {
-  width: 30px;
-  background-color: red;
 }
 
 /*Estilos para pantallas grandes*/
@@ -65,21 +52,6 @@
     margin-left: 15px;
     height: 1.5em;
   }
-}
-
-
-/*agregados de styles*/
-
-/* colours */
-:root {
-  --primary: #07bab2;
-  --secondary: #282428;
-  --title: #282428;
-}
-
-body,
-html {
-  height: 100%;
 }
 
 .bg {
@@ -116,11 +88,35 @@ nav a.brand-logo img {
   transform: translateY(50%);
 }
 
-/* recipe styles */
+/* Estilos de BARRA QR */
+#searchField {
+  border-radius: 8px;
+  box-shadow: 0px 1px 3px rgba(90, 90, 90, 0.1);
+  display: grid;
+  grid-template-columns: 11fr 1fr;
+  grid-template-areas: 'input button';
+  position: relative;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+#searchField input {
+  grid-area: input;
+}
+
+#searchField #searchBtn {
+  grid-area: button;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+/* equipos styles */
 .recipes {
   margin-top: 20px;
 }
-.card-panel.recipe {
+
+.card-panel.equipo-item {
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0px 1px 3px rgba(90, 90, 90, 0.1);
@@ -129,28 +125,29 @@ nav a.brand-logo img {
   grid-template-areas: 'image details delete';
   position: relative;
 }
-.recipe img {
+.equipo-item img {
   grid-area: image;
   max-width: 60px;
 }
-.recipe-details {
+.equipo-detalles {
   grid-area: details;
   margin-top: 6px;
 }
-.recipe-delete {
+.equipo-eliminar {
+  cursor: pointer;
   grid-area: delete;
   position: absolute;
   bottom: 0px;
   right: 0px;
 }
-.recipe-delete i {
+.equipo-eliminar i {
   font-size: 25px;
   color: var(--primary);
 }
-.recipe-title {
+.equipo-id {
   font-weight: bold;
 }
-.recipe-ingredients {
+.equipo-sector {
   font-size: 0.8em;
 }
 
@@ -163,7 +160,6 @@ input {
   -webkit-box-shadow: none !important;
 }
 .side-form button {
-  background: var(--title);
   box-shadow: 1px 1px 3px rgba(90, 90, 90, 0.2);
 }
 form .input-field {

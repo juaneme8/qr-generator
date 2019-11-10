@@ -83,34 +83,17 @@ auth.onAuthStateChanged(user => {
       user.admin = idTokenResult.claims.admin;
       renderUI(user);
     });
-    //Obtengo todos los equipos
-    /*db.collection('equipos').onSnapshot(
-      snapshot => {
-        renderEquipos(snapshot.docs);
-      },
-      err => console.log(err.message)
-    );*/
   } else {
     //Si no estoy logueado, limpio los datos que sólo los usuarios logueados pueden ver
     renderUI();
-    //renderEquipos([]);
+    //La limpieza de los equipos se realiza automáticamente al desloguearse ya que el contenedor tiene la clase logged-in
   }
 });
 
-// REAL-TIME LISTENER
-db.collection('equipos').onSnapshot(snapshot => {
-  snapshot.docChanges().forEach(change => {
-    if (change.type === 'added') {
-      renderEquipo(change.doc.data(), change.doc.id);
-    }
-    if (change.type === 'removed') {
-      removeEquipo(change.doc.id);
-    }
-  });
-});
-
-// AGREGAR EQUIPO
+// AGREGAR EQUIPO (1)
 const agregarEquipo = document.querySelector('#agregar-equipo');
+
+//Función invocada al hacer submit en el left side-menu.
 agregarEquipo.addEventListener('submit', evt => {
   evt.preventDefault();
 
@@ -130,14 +113,32 @@ agregarEquipo.addEventListener('submit', evt => {
   agregarEquipo.sector.value = '';
 });
 
-// ELIMINAR EQUIPO
+// ELIMINAR EQUIPO (2)
 const contenedorEquipos = document.querySelector('.contenedorEquipos');
 contenedorEquipos.addEventListener('click', evt => {
   if (evt.target.tagName === 'I') {
     const id = evt.target.getAttribute('data-id');
-    //console.log(id);
+    console.log('db rem');
     db.collection('equipos')
       .doc(id)
       .delete();
   }
+});
+
+//Obtengo todos los equipos
+
+// REAL-TIME LISTENER (3)
+//Función que de acuerdo a los cambios en la db actualiza el DOM (mediante ui.js).
+db.collection('equipos').onSnapshot(snapshot => {
+  snapshot.docChanges().forEach(change => {
+    //Ante un agregado a la DB
+    if (change.type === 'added') {
+      renderEquipo(change.doc.data(), change.doc.id);
+    }
+    //Ante una eliminación en la db
+    if (change.type === 'removed') {
+      console.log('rt removed');
+      removeEquipo(change.doc.id);
+    }
+  });
 });

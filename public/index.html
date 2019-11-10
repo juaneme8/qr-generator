@@ -17,7 +17,7 @@
         <a href="#" class="brand-logo">
           <img src="img/logo.svg" />
         </a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="side-menu" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li class="logged-in" style="display: none;">
             <a href="#" class="modal-trigger black-text" data-target="modal-account">Perfil</a>
@@ -42,7 +42,7 @@
       </div>
     </nav>
     <!-- SIDE NAV -->
-    <ul class="sidenav" id="mobile-demo">
+    <ul class="sidenav" id="side-menu">
       <li class="logged-out" F>
         <a href="#" class=" modal-trigger black-text" data-target="modal-signup">Crear Cuenta</a>
       </li>
@@ -64,13 +64,6 @@
         <a href="#" class="black-text" id="logout">Logout</a>
       </li>
     </ul>
-
-    <!-- SECCION QR -->
-    <div class="input-field" id="searchField">
-      <label for="qrLeido">Codigo Material</label>
-      <input placeholder="002-E-018" id="qrLeido" type="text" class="validate" />
-      <div id="searchBtn" class="center"><i class="material-icons">search</i></div>
-    </div>
 
     <!-- SIGN UP MODAL -->
     <div id="modal-signup" class="modal">
@@ -140,12 +133,23 @@
     </div>
 
     <!-- CONTENEDOR DE EQUIPOS -->
-    <div class="contenedorEquipos container grey-text text-darken-1"></div>
+    <div class="container logged-in" style="display: none;">
+      <!-- SECCION QR -->
+      <div class="input-field" id="searchField">
+        <input placeholder="002-E-018" id="qrLeido" type="text" class="validate" />
 
-    <div class="center">
-      <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
-        <i class="material-icons">add</i>
-      </a>
+        <label for="qrLeido">Codigo Material</label>
+
+        <div id="searchBtn" class="center"><i class="material-icons">search</i></div>
+      </div>
+
+      <div class="contenedorEquipos  grey-text text-darken-1"></div>
+
+      <div class="center">
+        <a class="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-form">
+          <i class="material-icons">add</i>
+        </a>
+      </div>
     </div>
 
     <!-- LEFT SIDENAV AGREGAR EQUIPO -->
@@ -192,7 +196,6 @@
 
     <script src="js/materialize.min.js"></script>
     <script src="js/jsQR.js"></script>
-    <script src="js/app.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/auth.js"></script>
   </body>
