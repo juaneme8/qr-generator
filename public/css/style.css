@@ -5,11 +5,6 @@
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-body,
-html {
-  height: 100%;
-}
-
 :root {
   --primary: #07bab2;
   --secondary: #282428;
@@ -167,4 +162,26 @@ form .input-field {
 }
 form .input-field.btn-small {
   color: var(--primary);
+}
+
+/* Estilos para la Impresión de QR */
+@media print {
+  .areaPantalla {
+    display: none;
+  }
+}
+
+/* borrar */
+.areaImpresion {
+  display: block;
+  margin: 10px;
+  border: 1px solid black;
+  width: 150px;
+}
+.areaImpresion table td {
+  padding: 0;
+}
+
+#qrImage {
+  padding: 10px;
 }

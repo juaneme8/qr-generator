@@ -12,7 +12,7 @@
   </head>
   <body class="grey lighten-2">
     <!-- CENTRAL NAV -->
-    <nav class="teal accent-4 z-depth-0">
+    <nav class="teal accent-4 z-depth-0 areaPantalla">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo">
           <img src="img/logo.svg" />
@@ -171,6 +171,39 @@
       </form>
     </div>
 
+    <div class="areaPantalla">
+      <input placeholder="QR" id="inputToMakeQR" type="text" />
+      <label for="inputToMakeQR">Nro. Catálogo</label>
+    </div>
+
+    <div id="etiqueta" class="areaImpresion" style="display: none;">
+      <table class="centered">
+        <tbody>
+          <tr>
+            <td>362-E-018</td>
+            <td>RV</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><div id="qrImage"></div></td>
+            <td>may-19</td>
+          </tr>
+          <tr>
+            <td>may-21</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- fin div id="etiqueta" -->
+
+    <!-- Copia de la Etiqueta -->
+    <div id="etiqueta2" class="areaImpresion" style="display: none;"></div>
+
+    <!-- Botón de impresión -->
+    <button class="btn waves-effect waves-light areaPantalla" id="btnPrint">
+      Imprimir
+      <i class="material-icons right">print</i>
+    </button>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
@@ -195,7 +228,8 @@
     </script>
 
     <script src="js/materialize.min.js"></script>
-    <script src="js/jsQR.js"></script>
+    <script src="js/qr-generator.js"></script>
+    <script src="js/qr-scanner.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/auth.js"></script>
   </body>

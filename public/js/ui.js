@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.cancelAnimationFrame(myReq);
 
         // Detengo el audio y el video de modo que la cámara se apague (círculo rojo en Chrome desaparece)
-        localStream.getTracks().forEach(track => {
+        localStream.getTracks().forEach((track) => {
           track.stop();
         });
       }
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Use facingMode: environment to attemt to get the front camera on phones
     navigator.mediaDevices
       .getUserMedia({ video: { facingMode: 'environment' } })
-      .then(stream => {
+      .then((stream) => {
         //Será utilizado para luego apagar la cámara en el callback de onCloseStart
         window.localStream = stream;
 
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         video.play();
         myReq = requestAnimationFrame(tick);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('getUserMedia Error // ' + err);
       });
   };
@@ -135,19 +135,19 @@ const loggedInLinks = document.querySelectorAll('.logged-in');
 
 document.addEventListener('DOMContentLoaded', function() {});
 
-const renderUI = user => {
+const renderUI = (user) => {
   //Si el usuario está logueado
   if (user) {
     //Si es admin
     if (user.admin) {
       //Muestro todos los elementos sólo visibles por admin
-      adminItems.forEach(item => (item.style.display = 'block'));
+      adminItems.forEach((item) => (item.style.display = 'block'));
     }
     // Obtengo los datos de firestore (no de Auth)
     db.collection('usuarios')
       .doc(user.uid)
       .get()
-      .then(doc => {
+      .then((doc) => {
         const html = `
         <div>Logged in as ${user.email}</div>
         <div>${doc.data().bio}</div>
@@ -156,17 +156,17 @@ const renderUI = user => {
         accountDetails.innerHTML = html;
       });
     // Muestro los elementos visibles para usuarios logueados y oculto los de usuarios deslogueados.
-    loggedInLinks.forEach(item => (item.style.display = 'block'));
-    loggedOutLinks.forEach(item => (item.style.display = 'none'));
+    loggedInLinks.forEach((item) => (item.style.display = 'block'));
+    loggedOutLinks.forEach((item) => (item.style.display = 'none'));
   }
   //El usuario no está logueado
   else {
     // Limpio la información
     accountDetails.innerHTML = '';
     // toggle user elements
-    adminItems.forEach(item => (item.style.display = 'none'));
-    loggedInLinks.forEach(item => (item.style.display = 'none'));
-    loggedOutLinks.forEach(item => (item.style.display = 'block'));
+    adminItems.forEach((item) => (item.style.display = 'none'));
+    loggedInLinks.forEach((item) => (item.style.display = 'none'));
+    loggedOutLinks.forEach((item) => (item.style.display = 'block'));
   }
 };
 
@@ -191,8 +191,55 @@ const renderEquipo = (data, id) => {
 
 //ELIMINAR EQUIPO
 //Funciónn encargada de eliminar del DOM un equipo al hacer click en el tachito de basura. Es invocada por el real-time listener de la db (auth.js).
-const removeEquipo = id => {
+const removeEquipo = (id) => {
   console.log('removeEquipo');
   const equipo = document.querySelector(`.equipo-item[data-id=${id}]`);
   equipo.remove();
 };
+
+/*##################################################################### 
+                        GENERACIÓN DE QR
+#####################################################################*/
+const inputToMakeQR = document.getElementById('inputToMakeQR');
+const qrImage = document.getElementById('qrImage');
+const etiqueta = document.getElementById('etiqueta');
+const etiqueta2 = document.getElementById('etiqueta2');
+
+//Botón para impresión de QR.
+const btnPrint = document.getElementById('btnPrint');
+
+//Creación del objeto
+const qrcode = new QRCode(qrImage, {
+  width: 50,
+  height: 50,
+  colorDark: '#000000',
+  colorLight: '#e0e0e0'
+});
+
+inputToMakeQR.addEventListener('input', () => {
+  console.log('ingresando texto');
+
+  //Convierto a mayúscula
+  inputToMakeQR.value = inputToMakeQR.value.toUpperCase();
+
+  //Obtengo el QR que aparecerá en el DIV qrImage
+  qrcode.makeCode(inputToMakeQR.value);
+
+  //Cargo el contenido para la copia
+  etiqueta2.innerHTML = etiqueta.innerHTML;
+
+  //Si el text input está vacío
+  if (inputToMakeQR.value == '') {
+    //Oculto la etiqueta
+    etiqueta.style.display = 'none';
+    etiqueta2.style.display = 'none';
+  } else {
+    //Muestro la etiqueta
+    etiqueta.style.display = 'block';
+    etiqueta2.style.display = 'block';
+  }
+});
+
+btnPrint.addEventListener('click', () => {
+  window.print();
+});
