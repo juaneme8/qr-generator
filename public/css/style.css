@@ -165,11 +165,9 @@ form .input-field.btn-small {
 }
 
 /* Estilos para la Impresión de QR */
-@media print {
-  .areaPantalla {
-    display: none;
-  }
-}
+/* @media print {
+  
+} */
 
 /* borrar */
 .areaImpresion {
@@ -185,3 +183,5 @@ form .input-field.btn-small {
 #qrImage {
   padding: 10px;
 }
+
+/* ESTILOS GENERACION QR */

@@ -3,7 +3,15 @@ const canvas = document.getElementById('canvas');
 const canvas2d = canvas.getContext('2d');
 const loadingMessage = document.getElementById('loadingMessage');
 const qrLeido = document.getElementById('qrLeido');
+
+//Select
+const cantQR = document.getElementById('cantQR');
+
+//Botones
 const searchBtn = document.getElementById('searchBtn');
+const btnAgregarQR = document.getElementById('btnAgregarQR');
+const btnGenerarQRs = document.getElementById('btnGenerarQRs');
+
 let myReq = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -203,7 +211,6 @@ const removeEquipo = (id) => {
 const inputToMakeQR = document.getElementById('inputToMakeQR');
 const qrImage = document.getElementById('qrImage');
 const etiqueta = document.getElementById('etiqueta');
-const etiqueta2 = document.getElementById('etiqueta2');
 
 //Botón para impresión de QR.
 const btnPrint = document.getElementById('btnPrint');
@@ -225,19 +232,22 @@ inputToMakeQR.addEventListener('input', () => {
   //Obtengo el QR que aparecerá en el DIV qrImage
   qrcode.makeCode(inputToMakeQR.value);
 
-  //Cargo el contenido para la copia
-  etiqueta2.innerHTML = etiqueta.innerHTML;
-
   //Si el text input está vacío
   if (inputToMakeQR.value == '') {
     //Oculto la etiqueta
     etiqueta.style.display = 'none';
-    etiqueta2.style.display = 'none';
   } else {
     //Muestro la etiqueta
     etiqueta.style.display = 'block';
-    etiqueta2.style.display = 'block';
   }
+});
+
+btnAgregarQR.addEventListener('click', () => {
+  console.log('btnAgregarQR');
+});
+
+btnGenerarQRs.addEventListener('click', () => {
+  console.log('btnGenerarQRs');
 });
 
 btnPrint.addEventListener('click', () => {

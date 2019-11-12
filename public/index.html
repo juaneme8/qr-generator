@@ -12,7 +12,7 @@
   </head>
   <body class="grey lighten-2">
     <!-- CENTRAL NAV -->
-    <nav class="teal accent-4 z-depth-0 areaPantalla">
+    <nav class="teal accent-4 z-depth-0">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo">
           <img src="img/logo.svg" />
@@ -36,7 +36,7 @@
             <a href="#" class="modal-trigger black-text" data-target="modal-signup">Crear Cuenta</a>
           </li>
           <li class="logged-in" style="display: none;">
-            <a href="#" class="black-text" id="logout">Logout</a>
+            <a href="#" class="black-text logout-btn">Logout</a>
           </li>
         </ul>
       </div>
@@ -52,16 +52,14 @@
       <li class="logged-in" style="display: none;">
         <a href="#" class=" modal-trigger black-text" data-target="modal-scan">Scan QR</a>
       </li>
-
       <li class="admin" style="display: none;">
         <a href="#" class="modal-trigger black-text" data-target="modal-admin">Administrar</a>
       </li>
-
       <li class="logged-out" style="display: none;">
         <a href="#" class=" modal-trigger black-text" data-target="modal-login">Login</a>
       </li>
       <li class="logged-in" style="display: none;">
-        <a href="#" class="black-text" id="logout">Logout</a>
+        <a href="#" class="black-text logout-btn">Logout</a>
       </li>
     </ul>
 
@@ -171,10 +169,18 @@
       </form>
     </div>
 
-    <div class="areaPantalla">
-      <input placeholder="QR" id="inputToMakeQR" type="text" />
-      <label for="inputToMakeQR">Nro. Catálogo</label>
-    </div>
+    <label for="inputToMakeQR">Nro. Catálogo</label>
+    <input placeholder="QR" id="inputToMakeQR" type="text" />
+
+    <label>Cant.</label>
+    <select class="browser-default">
+      <option value="1" selected>1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+
+    <!-- Botón Agregado -->
+    <button class="btn waves-effect waves-light" id="btnAgregarQR"><i class="material-icons">add</i></button>
 
     <div id="etiqueta" class="areaImpresion" style="display: none;">
       <table class="centered">
@@ -195,11 +201,13 @@
     </div>
     <!-- fin div id="etiqueta" -->
 
-    <!-- Copia de la Etiqueta -->
-    <div id="etiqueta2" class="areaImpresion" style="display: none;"></div>
+    <!-- Botón para generar QRs -->
+    <button class="btn waves-effect waves-light" id="btnGenerarQRs">
+      Generar QRs
+    </button>
 
     <!-- Botón de impresión -->
-    <button class="btn waves-effect waves-light areaPantalla" id="btnPrint">
+    <button class="btn waves-effect waves-light" id="btnPrint">
       Imprimir
       <i class="material-icons right">print</i>
     </button>
